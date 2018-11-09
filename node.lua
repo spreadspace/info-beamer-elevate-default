@@ -62,13 +62,13 @@ local function draw_info()
     logo:draw(x_spacing, y, x_spacing+size*4, y+l_y)
 
     if title ~= "" then
-       font:write(40+size*4, y, title, size, 1,0.647,0,1)
+       font:write(40+size*4, y, title, size, 1, 1, 1, 1)
     end
     y = y + size + y_spacing
 
     local size_serial = math.min(400, size*4)
     local width_serial = font:width(v.serial, size_serial)
-    font:write(WIDTH*0.5-width_serial/2, y, v.serial, size_serial, 1,1,1,1)
+    font:write(WIDTH*0.5-width_serial/2, y, v.serial, size_serial, 1, 0.647, 0, 1)
     y = y + size_serial + y_spacing
 
     line:draw(0, y-1, WIDTH, y+1)
