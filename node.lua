@@ -27,6 +27,7 @@
 
 ]]--
 
+node.alias "install"
 util.init_hosted()
 util.noglobals()
 
@@ -46,7 +47,7 @@ local serial = sys.get_env("SERIAL")
 local values = {}
 util.data_mapper {
     ["update/(.*)"] = function(key, val)
-        v[key] = val
+        values[key] = val
     end
 }
 
