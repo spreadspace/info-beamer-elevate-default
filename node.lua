@@ -51,29 +51,26 @@ util.data_mapper{
 }
 
 local function draw_info()
-    local size, k_x, v_x, y, l_x, l_y
-    size = math.floor(HEIGHT/20)
-    y = 30+size*6
-    l_x, l_y = logo:size()
+    local size = math.floor(HEIGHT/20)
+    local y = 30
+    local l_x, l_y = logo:size()
     l_y = l_y * (size*4/l_x)
     --    util.draw_correct(logo, 30, 30, WIDTH/2-30, 30+size*5)
-    logo:draw(30, 30, 30+size*4, 30+l_y)
+    logo:draw(30, y, 30+size*4, 30+l_y)
 
     if title ~= "" then
-       font:write(40+size*4, 30, title, size, 1,1,1,1)
+       font:write(40+size*4, y, title, size, 1,1,1,1)
     end
+    y = y + size + 20
 
-    if v.serial then
-        local s = math.min(400, size*4)
-        local w = font:width(v.serial, s)
-        local x = WIDTH*0.5
-        local y = 100
-        font:write(x-w/2, y-s/2, v.serial, s, 1,1,1,1)
-    end
+    local size_serial = math.min(400, size*4)
+    local width_serial = font:width(v.serial, s)
+    font:write(WIDTH*0.5-width_serial/2, y, v.serial, size_serial, 1,1,1,1)
+    y = y + size_serial + 20
 
     gray:draw(0, HEIGHT*0.4-1, WIDTH, HEIGHT*0.4+1)
 
-    k_x, v_x = 30, 30+font:width("XXXXXXXXXXXXXXXX", size)
+    local k_x, v_x = 30, 30+font:width("XXXXXXXXXXXXXXXX", size)
     local function key(str)
         font:write(k_x, y, str, size, 1,1,1,.5)
     end
