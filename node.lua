@@ -52,26 +52,27 @@ util.data_mapper{
 
 local function draw_info()
     local size = math.floor(HEIGHT/20)
-    local y = 30
+    local y = size
+    local x_spacing = size
+    local y_spacing = size * 0.2
     local l_x, l_y = logo:size()
     l_y = l_y * (size*4/l_x)
-    --    util.draw_correct(logo, 30, 30, WIDTH/2-30, 30+size*5)
-    logo:draw(30, y, 30+size*4, 30+l_y)
+    logo:draw(x_spacing, y, x_spacing+size*4, y+l_y)
 
     if title ~= "" then
        font:write(40+size*4, y, title, size, 1,1,1,1)
     end
-    y = y + size + 20
+    y = y + size + y_spacing
 
     local size_serial = math.min(400, size*4)
     local width_serial = font:width(v.serial, size_serial)
     font:write(WIDTH*0.5-width_serial/2, y, v.serial, size_serial, 1,1,1,1)
-    y = y + size_serial + 20
+    y = y + size_serial + y_spacing
 
     gray:draw(0, y-1, WIDTH, y+1)
+    y = y + y_spacing
 
-    y = y + 20
-    local k_x, v_x = 30, 30+font:width("XXXXXXXXXXXXXXXX", size)
+    local k_x, v_x = x_spacing, x_spacing+font:width("XXXXXXXXXXXXXXXX", size)
     local function key(str)
         font:write(k_x, y, str, size, 1,1,1,.5)
     end
