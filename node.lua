@@ -51,7 +51,7 @@ util.data_mapper{
 }
 
 local function draw_info()
-    local size, k_x, v_x, y
+    local size, k_x, v_x, y, l_x, l_y
     size = math.floor(HEIGHT/20)
     y = 30+size*6
     k_x, v_x = 30, 30+font:width("XXXXXXXXXXXXXXXX", size)
