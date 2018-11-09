@@ -68,7 +68,7 @@ local function draw_info()
 
     local size_serial = math.min(400, size*4)
     local width_serial = font:width(v.serial, size_serial)
-    font:write(WIDTH*0.5-width_serial/2, y, v.serial, size_serial, 1, 0.647, 0, 1)
+    font:write(WIDTH*0.5-width_serial/2, y, v.serial, size_serial, 1, 0.77, 0, 1)
     y = y + size_serial + y_spacing
 
     line:draw(0, y-1, WIDTH, y+1)
