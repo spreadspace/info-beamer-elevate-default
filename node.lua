@@ -64,12 +64,13 @@ local function draw_info()
     y = y + size + 20
 
     local size_serial = math.min(400, size*4)
-    local width_serial = font:width(v.serial, s)
+    local width_serial = font:width(v.serial, size_serial)
     font:write(WIDTH*0.5-width_serial/2, y, v.serial, size_serial, 1,1,1,1)
     y = y + size_serial + 20
 
-    gray:draw(0, HEIGHT*0.4-1, WIDTH, HEIGHT*0.4+1)
+    gray:draw(0, y-1, WIDTH, y+1)
 
+    y = y + 20
     local k_x, v_x = 30, 30+font:width("XXXXXXXXXXXXXXXX", size)
     local function key(str)
         font:write(k_x, y, str, size, 1,1,1,.5)
