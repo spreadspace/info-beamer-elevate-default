@@ -12,6 +12,12 @@
         "type": "resource",
         "valid": ["image"],
         "default": "logo.png"
+    },{
+        "title": "Font",
+        "ui_width": 6,
+        "name": "font",
+        "type": "font",
+        "default": "Ubuntu-C.ttf"
     }, {
         "title": "Info Text",
         "ui_width": 12,
