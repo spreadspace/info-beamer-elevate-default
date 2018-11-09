@@ -55,13 +55,15 @@ local function draw_info()
     size = math.floor(HEIGHT/20)
     y = 30+size*6
     k_x, v_x = 30, 30+font:width("XXXXXXXXXXXXXXXX", size)
-    util.draw_correct(logo, 30, 30, WIDTH/2-30, 30+size*5)
+    l_x, l_y = logo:size()
+--    util.draw_correct(logo, 30, 30, WIDTH/2-30, 30+size*5)
+    util.draw_correct(logo, 30, 30, 30+l_x, 30+l_y)
 
     if title ~= "" then
        font:write(60, 30, title, size, 1,1,1,.5)
     end
 
-    gray:draw(0, HEIGHT/2-1, WIDTH, HEIGHT/2+1)
+    gray:draw(0, HEIGHT/3-1, WIDTH, HEIGHT/3+1)
 
     local function key(str)
         font:write(k_x, y, str, size, 1,1,1,.5)
