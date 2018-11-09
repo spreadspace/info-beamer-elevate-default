@@ -54,7 +54,7 @@ local function draw_info()
     local size = math.floor(HEIGHT/20)
     local y = size
     local x_spacing = size
-    local y_spacing = size * 0.2
+    local y_spacing = size * 0.3
     local l_x, l_y = logo:size()
     l_y = l_y * (size*4/l_x)
     logo:draw(x_spacing, y, x_spacing+size*4, y+l_y)
