@@ -41,7 +41,6 @@ util.file_watch("config.json", function(raw)
     info = config.info
 
     gl.setup(NATIVE_WIDTH, NATIVE_HEIGHT)
-    st = util.screen_transform(rotation)
 end)
 
 local function wrap(str, limit)
@@ -152,7 +151,6 @@ local function draw_info()
 end
 
 function node.render()
-    st()
     gl.clear(0,0,0,1)
     draw_info()
 end
