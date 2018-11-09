@@ -73,7 +73,7 @@ local function draw_info()
     line:draw(0, y-1, WIDTH, y+1)
     y = y + 3*y_spacing
 
-    local k_x, v_x = 2*x_spacing, 2*x_spacing+font:width("XXXXXXXXXXXXXXXX", size)
+    local k_x, v_x = WIDTH/2-font:width("XXXXXXXXXXXXXXXX", size), WIDTH/2
     local function key(str)
         font:write(k_x, y, str, size, 1,1,1,.5)
     end
