@@ -19,9 +19,9 @@
         "type": "font",
         "default": "Ubuntu-C.ttf"
     }, {
-        "title": "Info Text",
+        "title": "Title",
         "ui_width": 12,
-        "name": "info",
+        "name": "title",
         "type": "string",
         "default": "Info-Beamer for Elevate Festival"
     }]
