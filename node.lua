@@ -64,7 +64,7 @@ local function draw_info()
     end
 
     if v.serial then
-        local s = math.min(400, size*5)
+        local s = math.min(400, size*4)
         local w = font:width(v.serial, s)
         local x = WIDTH*0.5
         local y = 100
