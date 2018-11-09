@@ -41,11 +41,9 @@ local font = CONFIG.font
 local logo = CONFIG.logo:ensure_loaded()
 local title = CONFIG.title
 local line = resource.create_colored_texture(1,1,1,0.5)
-local v = {
-   serial = sys.get_env("SERIAL")
-}
+local serial = sys.get_env("SERIAL")
 
--- TODO: fix this!
+local values = {}
 util.data_mapper {
     ["update/(.*)"] = function(key, val)
         v[key] = val
@@ -67,8 +65,8 @@ local function draw_info()
     y = y + size + y_spacing
 
     local size_serial = math.min(400, size*4)
-    local width_serial = font:width(v.serial, size_serial)
-    font:write(WIDTH*0.5-width_serial/2, y, v.serial, size_serial, 1, 0.77, 0, 1)
+    local width_serial = font:width(serial, size_serial)
+    font:write(WIDTH*0.5-width_serial/2, y, serial, size_serial, 1, 0.77, 0, 1)
     y = y + size_serial + y_spacing
 
     line:draw(0, y-1, WIDTH, y+1)
@@ -84,43 +82,43 @@ local function draw_info()
         y = y + size*1.1
     end
 
-    if v.network then
+    if values.network then
         key "Network config"
-        val(v.network)
+        val(values.network)
     end
 
-    if v.ethmac then
+    if values.ethmac then
         key "Ethernet MAC"
-        val(v.ethmac)
+        val(values.ethmac)
     end
 
-    if v.ethip then
+    if values.ethip then
         key "Ethernet IPv4"
-        val(v.ethip)
+        val(values.ethip)
     end
 
-    if v.wlanmac then
+    if values.wlanmac then
         key "WiFi MAC"
-        val(v.wlanmac)
+        val(values.wlanmac)
     end
 
-    if v.wlanip then
+    if values.wlanip then
         key "WiFi IPv4"
-        val(v.wlanip)
+        val(values.wlanip)
     end
 
-    if v.gw then
+    if values.gw then
         key "Gateway"
-        val(v.gw)
+        val(values.gw)
     end
 
-    if v.online then
+    if values.online then
         key "Online status"
         local col = {1,0,0,1}
-        if v.online == "online" then
+        if values.online == "online" then
             col = {0,1,0,1}
         end
-        val(v.online, col)
+        val(values.online, col)
     end
 
 end
