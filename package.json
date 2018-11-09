@@ -1,6 +1,6 @@
 {
-    "name": "Screen Installation Instructions",
-    "author": "Florian Wesch <fw@info-beamer.com>",
-    "desc": "Show useful information on a screen for your installation crew",
-    "repository": "https://github.com/info-beamer/package-installation-help"
+    "name": "Elevate Festival - Default Screen",
+    "author": "equinox@elevate.at",
+    "desc": "Default Package for Elevate Festival",
+    "repository": "https://github.com/spreadspace/info-beamer-elevate-default"
 }

@@ -1,17 +1,55 @@
 #!/usr/bin/python
-import os, sys, fcntl, socket, struct, requests, time, traceback
+#
+# this basically the same as the version used in:
+# https://github.com/info-beamer/package-installation-help
+# this repo has the following license:
+#
+#
+# Copyright (C) 2016 Florian Wesch <fw@dividuum.de>
+#
+# Permission is hereby granted, free of charge, to any person obtaining a copy
+# of this software and associated documentation files (the "Software"), to deal
+# in the Software without restriction, including without limitation the rights
+# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+# copies of the Software, and to permit persons to whom the Software is
+# furnished to do so, subject to the following conditions:
+#
+# The above copyright notice and this permission notice shall be included in
+# all copies or substantial portions of the Software.
+#
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.  IN NO EVENT SHALL THE
+# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+# THE SOFTWARE.
+#
+#
+
+import os
+import sys
+import fcntl
+import socket
+import struct
+import requests
+import time
+import traceback
 from functools import partial
 from heapq import heappush, heapreplace
 
 sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
 
+
 def send(key, val):
     sys.stderr.write("sending %s->%s\n" % (key, val))
     sock.sendto('install/update/%s:%s' % (key, val), ('127.0.0.1', 4444))
 
+
 def readfile(filename):
     with file(filename, "rb") as f:
         return f.read()
+
 
 def get_default_gateway():
     with open("/proc/net/route") as fh:
@@ -20,6 +58,7 @@ def get_default_gateway():
             if fields[1] != '00000000' or not int(fields[3], 16) & 2:
                 continue
             return socket.inet_ntoa(struct.pack("<L", int(fields[2], 16)))
+
 
 def get_mac(ifname):
     try:
@@ -31,22 +70,25 @@ def get_mac(ifname):
     except:
         return None
 
+
 def get_ipv4(ifname):
     try:
         s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
         info = fcntl.ioctl(s.fileno(), 0x8915, struct.pack('256s', ifname[:15]))
         ip = socket.inet_ntoa(info[20:24])
 
-	mask = struct.unpack('>I', fcntl.ioctl(s.fileno(), 0x891b, struct.pack('256s',ifname))[20:24])[0]
-	mask = bin(mask)[2:].count('1') # Remember: not everything has to be performance optimal :-)
-	return "%s/%d" % (ip, mask)
+        mask = struct.unpack('>I', fcntl.ioctl(s.fileno(), 0x891b, struct.pack('256s', ifname))[20:24])[0]
+        mask = bin(mask)[2:].count('1')  # Remember: not everything has to be performance optimal :-)
+        return "%s/%d" % (ip, mask)
     except IOError:
         return "<no ipv4>"
     except:
         return None
 
+
 def check_network():
     return os.path.exists('/sd/config/network') and "static" or "dhcp"
+
 
 def check_internet():
     try:
@@ -77,6 +119,7 @@ now = time.time()
 for interval, key, val_fn in tests:
     heappush(q, (now, (interval, key, val_fn)))
 
+
 def run_next_test():
     now = time.time()
     t, test = q[0]
@@ -93,10 +136,9 @@ if __name__ == "__main__":
     while 1:
         try:
             if not run_next_test():
-		time.sleep(0.2)
+                time.sleep(0.2)
         except KeyboardInterrupt:
             raise
         except:
             traceback.print_exc()
             time.sleep(1)
-
