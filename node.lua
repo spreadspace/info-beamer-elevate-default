@@ -40,11 +40,13 @@ gl.setup(NATIVE_WIDTH, NATIVE_HEIGHT)
 local font = CONFIG.font
 local logo = CONFIG.logo:ensure_loaded()
 local title = CONFIG.title
-local gray = resource.create_colored_texture(1,1,1,0.5)
+local line = resource.create_colored_texture(1,1,1,0.5)
 local v = {
-    serial = sys.get_env "SERIAL"
+   serial = sys.get_env("SERIAL")
 }
-util.data_mapper{
+
+-- TODO: fix this!
+util.data_mapper {
     ["update/(.*)"] = function(key, val)
         v[key] = val
     end
@@ -60,7 +62,7 @@ local function draw_info()
     logo:draw(x_spacing, y, x_spacing+size*4, y+l_y)
 
     if title ~= "" then
-       font:write(40+size*4, y, title, size, 1,1,1,1)
+       font:write(40+size*4, y, title, size, 1,0.647,0,1)
     end
     y = y + size + y_spacing
 
@@ -69,7 +71,7 @@ local function draw_info()
     font:write(WIDTH*0.5-width_serial/2, y, v.serial, size_serial, 1,1,1,1)
     y = y + size_serial + y_spacing
 
-    gray:draw(0, y-1, WIDTH, y+1)
+    line:draw(0, y-1, WIDTH, y+1)
     y = y + y_spacing
 
     local k_x, v_x = x_spacing, x_spacing+font:width("XXXXXXXXXXXXXXXX", size)
@@ -82,10 +84,10 @@ local function draw_info()
         y = y + size*1.1
     end
 
---    if v.network then
+    if v.network then
         key "Network config"
         val(v.network)
---    end
+    end
 
     if v.ethmac then
         key "Ethernet MAC"
