@@ -63,7 +63,15 @@ local function draw_info()
        font:write(60, 30, title, size, 1,1,1,.5)
     end
 
-    gray:draw(0, HEIGHT/3-1, WIDTH, HEIGHT/3+1)
+    if v.serial then
+        local s = math.min(400, size*5)
+        local w = font:width(v.serial, s)
+        local x = WIDTH*0.5
+        local y = 100
+        font:write(x-w/2, y-s/2, v.serial, s, 1,1,1,1)
+    end
+
+    gray:draw(0, HEIGHT*0.4-1, WIDTH, HEIGHT*0.4+1)
 
     local function key(str)
         font:write(k_x, y, str, size, 1,1,1,.5)
@@ -72,11 +80,6 @@ local function draw_info()
         col = col or {1,1,1,.5}
         font:write(v_x, y, str, size, unpack(col))
         y = y + size*1.1
-    end
-
-    if v.serial then
-        key "Serial number"
-        val(v.serial)
     end
 
     if v.network then
@@ -118,13 +121,6 @@ local function draw_info()
         val(v.online, col)
     end
 
-    -- if big ~= "" then
-    --     local s = math.min(400, size*5)
-    --     local w = font:width(big, s)
-    --     local x = WIDTH*0.75
-    --     local y = HEIGHT*0.5
-    --     font:write(x-w/2, y-s/2, big, s, 1,1,1,1)
-    -- end
 end
 
 function node.render()
