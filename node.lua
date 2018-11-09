@@ -58,7 +58,7 @@ local function draw_info()
     l_x, l_y = logo:size()
     l_y = l_y * (size*4/l_x)
     --    util.draw_correct(logo, 30, 30, WIDTH/2-30, 30+size*5)
-    logo.draw(30, 30, 30+size*4, 30+l_y)
+    logo:draw(30, 30, 30+size*4, 30+l_y)
 
     if title ~= "" then
        font:write(60, 30, title, size, 1,1,1,.5)
