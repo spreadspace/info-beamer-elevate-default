@@ -1,6 +1,6 @@
 --[[
 
-  this basically the same as the version used in:
+  this based on node.lua from:
   https://github.com/info-beamer/package-installation-help
   this repo has the following license:
 
@@ -31,41 +31,20 @@ node.alias "install"
 util.init_hosted()
 util.noglobals()
 
-local SERIAL = sys.get_env "SERIAL"
+NATIVE_WIDTH = NATIVE_WIDTH or 1920
+NATIVE_HEIGHT = NATIVE_HEIGHT or 1080
+
+sys.set_flag("no_clear")
+
+gl.setup(NATIVE_WIDTH, NATIVE_HEIGHT)
+
 local font = CONFIG.font
+local logo = CONFIG.logo
+local title = CONFIG.title
 local gray = resource.create_colored_texture(1,1,1,0.5)
-local json = require "json"
-
-local logo, config, st, info
-util.file_watch("config.json", function(raw)
-    config = json.decode(raw)
-    logo = resource.load_image(config.logo.asset_name)
-    info = config.info
-
-    gl.setup(NATIVE_WIDTH, NATIVE_HEIGHT)
-end)
-
-local function wrap(str, limit)
-    limit = limit or 72
-    local here = 1
-    local wrapped = str:gsub("(%s+)()(%S+)()", function(sp, st, word, fi)
-        if fi-here > limit then
-            here = st
-            return "\n"..word
-        end
-    end)
-    local splitted = {}
-    for token in string.gmatch(wrapped, "[^\n]+") do
-        splitted[#splitted + 1] = token
-    end
-    return splitted
-end
-
-
 local v = {
-    serial = SERIAL
+    serial = sys.get_env "SERIAL"
 }
-
 util.data_mapper{
     ["update/(.*)"] = function(key, val)
         v[key] = val
@@ -78,6 +57,11 @@ local function draw_info()
     y = 30+size*6
     k_x, v_x = 30, 30+font:width("XXXXXXXXXXXXXXXX", size)
     util.draw_correct(logo, 30, 30, WIDTH/2-30, 30+size*5)
+
+    if title ~= "" then
+       font:write(60, 30, title, size, 1,1,1,.5)
+    end
+
     gray:draw(0, HEIGHT/2-1, WIDTH, HEIGHT/2+1)
 
     local function key(str)
@@ -131,16 +115,6 @@ local function draw_info()
             col = {0,1,0,1}
         end
         val(v.online, col)
-    end
-
-    if info ~= "" then
-        val ""
-        local lines = wrap(info, 40)
-        for idx = 1, #lines do
-            local line = lines[idx]
-            key(line)
-            val""
-        end
     end
 
     -- if big ~= "" then
