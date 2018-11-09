@@ -57,8 +57,8 @@ local function draw_info()
     local x_spacing = size
     local y_spacing = size * 0.3
     local l_x, l_y = logo:size()
-    l_y = l_y * (size*4/l_x)
-    logo:draw(x_spacing, y, x_spacing+size*4, y+l_y)
+    l_x = l_x * (size*4/l_y)
+    logo:draw(x_spacing, y, x_spacing+l_x, y+size*4)
 
     font:write(x_spacing+size*5, y, title, size, 1, 1, 1, 1)
     y = y + size + y_spacing
