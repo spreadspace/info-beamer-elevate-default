@@ -82,10 +82,10 @@ local function draw_info()
         y = y + size*1.1
     end
 
-    if v.network then
+--    if v.network then
         key "Network config"
         val(v.network)
-    end
+--    end
 
     if v.ethmac then
         key "Ethernet MAC"
