@@ -71,9 +71,9 @@ local function draw_info()
     y = y + size_serial + y_spacing
 
     line:draw(0, y-1, WIDTH, y+1)
-    y = y + y_spacing
+    y = y + 3*y_spacing
 
-    local k_x, v_x = x_spacing, x_spacing+font:width("XXXXXXXXXXXXXXXX", size)
+    local k_x, v_x = 2*x_spacing, 2*x_spacing+font:width("XXXXXXXXXXXXXXXX", size)
     local function key(str)
         font:write(k_x, y, str, size, 1,1,1,.5)
     end
