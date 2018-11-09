@@ -54,13 +54,13 @@ util.data_mapper {
 local function draw_info()
     local size = math.floor(HEIGHT/16)
     local y = size
-    local x_spacing = size
-    local y_spacing = size * 0.3
+
+    local x_spacing, y_spacing = size * 0.3, size * 0.3
     local l_x, l_y = logo:size()
     l_x = l_x * (size*4/l_y)
     logo:draw(x_spacing, y, x_spacing+l_x, y+size*4)
 
-    font:write(x_spacing+size*5, y, title, size, 1, 1, 1, 1)
+    font:write(x_spacing+l_x+x_spacing, y, title, size, 1, 1, 1, 1)
     y = y + size + y_spacing
 
     local size_serial = size*2.5
