@@ -36,7 +36,7 @@ NATIVE_HEIGHT = NATIVE_HEIGHT or 1080
 
 node.set_flag("no_clear")
 
-gl.setup(NATIVE_WIDTH/2, NATIVE_HEIGHT/2)
+gl.setup(NATIVE_WIDTH, NATIVE_HEIGHT)
 
 local font = CONFIG.font
 local logo = CONFIG.logo:ensure_loaded()
