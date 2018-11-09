@@ -27,14 +27,13 @@
 
 ]]--
 
-node.alias "install"
 util.init_hosted()
 util.noglobals()
 
 NATIVE_WIDTH = NATIVE_WIDTH or 1920
 NATIVE_HEIGHT = NATIVE_HEIGHT or 1080
 
-sys.set_flag("no_clear")
+node.set_flag("no_clear")
 
 gl.setup(NATIVE_WIDTH, NATIVE_HEIGHT)
 
