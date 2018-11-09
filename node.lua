@@ -38,7 +38,7 @@ node.set_flag("no_clear")
 gl.setup(NATIVE_WIDTH, NATIVE_HEIGHT)
 
 local font = CONFIG.font
-local logo = CONFIG.logo
+local logo = CONFIG.logo:ensure_loaded()
 local title = CONFIG.title
 local gray = resource.create_colored_texture(1,1,1,0.5)
 local v = {
