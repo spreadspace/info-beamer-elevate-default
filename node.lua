@@ -28,8 +28,8 @@
 ]]--
 
 node.alias "install"
-util.noglobals()
 util.init_hosted()
+util.noglobals()
 
 local SERIAL = sys.get_env "SERIAL"
 local font = CONFIG.font
