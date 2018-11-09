@@ -1,5 +1,5 @@
 {
-    "name": "Elevate Festival - Default Screen",
+    "name": "Elevate Festival Default",
     "permissions": {
         "unboxed": "Needs access to the device configuration",
         "network": "Needs network access for online check",
