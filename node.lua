@@ -78,7 +78,7 @@ local function draw_info()
     y = 30+size*6
     k_x, v_x = 30, 30+font:width("XXXXXXXXXXXXXXXX", size)
     util.draw_correct(logo, 30, 30, WIDTH/2-30, 30+size*5)
-    gray:draw(WIDTH/2-1, 0, WIDTH/2+1, HEIGHT)
+    gray:draw(0, HEIGHT/2-1, WIDTH, HEIGHT/2+1)
 
     local function key(str)
         font:write(k_x, y, str, size, 1,1,1,.5)
