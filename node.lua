@@ -52,7 +52,7 @@ util.data_mapper {
 }
 
 local function draw_info()
-    local size = math.floor(HEIGHT/20)
+    local size = math.floor(HEIGHT/16)
     local y = size
     local x_spacing = size
     local y_spacing = size * 0.3
@@ -65,7 +65,7 @@ local function draw_info()
     end
     y = y + size + y_spacing
 
-    local size_serial = math.min(400, size*4)
+    local size_serial = math.min(400, size*3.5)
     local width_serial = font:width(serial, size_serial)
     font:write(WIDTH*0.5-width_serial/2, y, serial, size_serial, 1, 0.77, 0, 1)
     y = y + size_serial + y_spacing
