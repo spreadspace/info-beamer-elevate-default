@@ -58,14 +58,15 @@ local function draw_info()
     local x_spacing, y_spacing = size * 0.3, size * 0.3
     local l_x, l_y = logo:size()
     l_x = l_x * (size*4/l_y)
-    logo:draw(2*x_spacing, y, 2*x_spacing+l_x, y+size*4)
+    logo:draw(size, y, size+l_x, y+size*4)
 
-    font:write(3*x_spacing+l_x, y, title, size, 1, 1, 1, 1)
+    local width_title = font:width(title, size)
+    font:write(WIDTH*0.5-width_title/2+l_x, y, title, size, 1, 1, 1, 1)
     y = y + size + y_spacing
 
     local size_serial = size*2.5
     local width_serial = font:width(serial, size_serial)
-    font:write(WIDTH*0.5-width_serial/2, y, serial, size_serial, 1, 0.77, 0, 1)
+    font:write(WIDTH*0.5-width_serial/2+l_x, y, serial, size_serial, 1, 0.77, 0, 1)
     y = y + size_serial + 2*y_spacing
 
     line:draw(0, y-1, WIDTH, y+1)
