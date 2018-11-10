@@ -27,6 +27,8 @@
 #
 #
 
+from hosted import NODE
+
 import os
 import sys
 import fcntl
@@ -38,17 +40,9 @@ import traceback
 from functools import partial
 from heapq import heappush, heapreplace
 
-sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
 
-
-def send(key, val):
-    sys.stderr.write("sending %s->%s\n" % (key, val))
-    sock.sendto('install/update/%s:%s' % (key, val), ('127.0.0.1', 4444))
-
-
-def readfile(filename):
-    with file(filename, "rb") as f:
-        return f.read()
+def send_kv(key, val):
+    NODE.send('/update/%s:%s' % (key, val))
 
 
 def get_default_gateway():
@@ -130,7 +124,7 @@ def run_next_test():
     heapreplace(q, (now + interval, test))
     val = val_fn()
     if val is not None:
-        send(key, val)
+        send_kv(key, val)
     return True
 
 

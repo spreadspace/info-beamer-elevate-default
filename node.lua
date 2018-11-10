@@ -1,8 +1,7 @@
-node.alias "install"
 util.init_hosted()
 
 -- this is only supported on the Raspi....
-util.noglobals()
+--util.noglobals()
 
 node.set_flag("no_clear")
 
