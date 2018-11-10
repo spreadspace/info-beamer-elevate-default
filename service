@@ -2,7 +2,7 @@
 #
 # this basically the same as the version used in:
 # https://github.com/info-beamer/package-installation-help
-# this repo has the following license:
+# which has the following license:
 #
 #
 # Copyright (C) 2016 Florian Wesch <fw@dividuum.de>
@@ -104,6 +104,7 @@ def check_internet():
         traceback.print_exc()
         return "offline"
 
+
 tests = [
     (1,  "ethmac",  partial(get_mac, "eth0")),
     (1,  "wlanmac", partial(get_mac, "wlan0")),
@@ -131,6 +132,7 @@ def run_next_test():
     if val is not None:
         send(key, val)
     return True
+
 
 if __name__ == "__main__":
     while 1:
