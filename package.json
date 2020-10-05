@@ -2,5 +2,7 @@
     "name": "Elevate Festival Default",
     "author": "equinox@elevate.at",
     "desc": "Default Package for Elevate Festival",
-    "repository": "https://github.com/spreadspace/info-beamer-elevate-default"
+    "repository": "https://github.com/spreadspace/info-beamer-elevate-default",
+    "platforms": ["pi/v6", "pi/v7", "pi/v8"],
+    "version": "trunk"
 }
