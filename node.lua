@@ -76,7 +76,7 @@ local function draw_info()
    line:draw(0, y-1, WIDTH, y+1)
    y = y + s * 0.42
 
-   tvservice = values.tvservice or "state 0xa [HDMI CUSTOM RGB full 16:9], 3840x2160 @ 25.00Hz, progressive"
+   tvservice = values.tvservice or "-"
    local ts_s = s*0.5
    local ts_x = WIDTH/2 - font:width(tvservice, ts_s)/2
    font:write(ts_x, y, tvservice, ts_s, unpack(colors.grey))
