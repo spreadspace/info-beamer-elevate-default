@@ -42,7 +42,7 @@ util.data_mapper {
 
 local function draw_info()
    local s = math.floor(HEIGHT/16)
-   local y = s
+   local y = s*1.1
 
    local logo_x, logo_y = logo:size()
    logo_x = logo_x * (s*4/logo_y)
@@ -58,7 +58,7 @@ local function draw_info()
    y = y + serial_s + s * 0.7
 
    line:draw(0, y-1, WIDTH, y+1)
-   y = y + s * 0.6
+   y = y + s * 0.42
 
    local k_x, v_x = WIDTH/2-font:width(keys._spacer_, s), WIDTH/2
    local function print_kv(k, v, c)
@@ -71,12 +71,12 @@ local function draw_info()
       print_kv(keys[k], values[k])
    end
    print_kv(keys.online, values.online, (values.online == "online") and colors.green or colors.red)
-   y = y + s * 0.6
+   y = y + s * 0.42
 
    line:draw(0, y-1, WIDTH, y+1)
-   y = y + s * 0.6
+   y = y + s * 0.42
 
-   tvservice = values.tvservice or "-"
+   tvservice = values.tvservice or "state 0xa [HDMI CUSTOM RGB full 16:9], 3840x2160 @ 25.00Hz, progressive"
    local ts_s = s*0.5
    local ts_x = WIDTH/2 - font:width(tvservice, ts_s)/2
    font:write(ts_x, y, tvservice, ts_s, unpack(colors.grey))
