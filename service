@@ -102,7 +102,7 @@ def check_internet():
 
 def check_tvservice():
     try:
-        return subprocess.check_output("tvservice", "-s")
+        return subprocess.check_output(["tvservice", "-s"]).partition('\n')[0]
     except:
         traceback.print_exc()
         return "unknown resolution"
