@@ -50,7 +50,7 @@ local function draw_info()
 
    local title_w = font:width(title, s)
    font:write(s*0.7 + WIDTH*0.5-title_w/2, y, title, s, unpack(colors.white))
-   y = y + s + s * 0.3
+   y = y + s + s * 0.2
 
    local serial_s = s*2.5
    local serial_w = font:width(serial, serial_s)
@@ -58,7 +58,7 @@ local function draw_info()
    y = y + serial_s + s * 0.7
 
    line:draw(0, y-1, WIDTH, y+1)
-   y = y + s
+   y = y + s * 0.6
 
    local k_x, v_x = WIDTH/2-font:width(keys._spacer_, s), WIDTH/2
    local function print_kv(k, v, c)
@@ -71,6 +71,15 @@ local function draw_info()
       print_kv(keys[k], values[k])
    end
    print_kv(keys.online, values.online, (values.online == "online") and colors.green or colors.red)
+   y = y + s * 0.6
+
+   line:draw(0, y-1, WIDTH, y+1)
+   y = y + s * 0.6
+
+   tvservice = values.tvservice or "-"
+   local ts_s = s*0.5
+   local ts_x = WIDTH/2 - font:width(tvservice, ts_s)/2
+   font:write(ts_x, y, tvservice, ts_s, unpack(colors.grey))
 end
 
 function node.render()

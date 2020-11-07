@@ -37,6 +37,7 @@ import struct
 import requests
 import time
 import traceback
+import subprocess
 from functools import partial
 from heapq import heappush, heapreplace
 
@@ -99,6 +100,14 @@ def check_internet():
         return "offline"
 
 
+def check_tvservice():
+    try:
+        return subprocess.check_output("tvservice", "-s")
+    except:
+        traceback.print_exc()
+        return "unknown resolution"
+
+
 tests = [
     (1,  "ethmac",  partial(get_mac, "eth0")),
     (1,  "wlanmac", partial(get_mac, "wlan0")),
@@ -107,6 +116,7 @@ tests = [
     (1,  "gw",      get_default_gateway),
     (10, "online",  check_internet),
     (5,  "network", check_network),
+    (10, "tvservice", check_tvservice),
 ]
 
 q = []
